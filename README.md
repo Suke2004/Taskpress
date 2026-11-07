@@ -63,6 +63,8 @@ Edit `config.json` to change the vault without changing code. Configuration is r
 
 Sync runs **from Taskpress to Obsidian**. Edits made inside Obsidian are not imported into the app. Do not edit the managed block; place personal notes outside it. Event comments prevent duplicate logs after a retry. Failed writes remain queued locally, even after clearing; click **Retry sync** after repairing the path or restoring vault access. Relaunching retries too. A completion, reopen and later completion intentionally produces two historical completions.
 
+For agent consumption, the vault map `03-Systems/Templates/Memory/tool-tracking.md` documents every log location and format (daily journal, completion log, current page) plus reliability guarantees, so a tracking agent can reconstruct a day's task work.
+
 `typingSpeedMs` defaults to 35 ms per character. Long lines accelerate so the reveal finishes within 400 ms. `timeZone` defaults to `Asia/Calcutta`. Reduced-motion preferences disable typing, stamp and feed animation. Audio is generated locally with Web Audio; no network, external font or sound files are required.
 
 ## Checks
