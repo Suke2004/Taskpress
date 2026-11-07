@@ -1,0 +1,19 @@
+# Installed dependencies
+node_modules/
+
+# Generated screenshots and verification output
+output/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Local environment settings
+.env
+.env.*
+!.env.example
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

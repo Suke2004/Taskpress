@@ -1,0 +1,17 @@
+{
+  "name": "taskpress",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A mechanical pixel-art typewriter-style todo list with Obsidian task logging",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tests/core.test.cjs",
+    "test:e2e": "node tests/desktop.test.cjs"
+  },
+  "devDependencies": {
+    "electron": "44.10.2",
+    "playwright": "1.64.1"
+  }
+}
