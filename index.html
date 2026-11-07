@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'">
+  <title>Taskpress</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="renderer.js"></script>
+</head>
+<body>
+  <main class="typewriter" aria-label="Taskpress planner">
+    <section class="paper" aria-label="Your page">
+      <header class="paper-top drag-handle">
+        <span id="date" class="date"></span>
+        <div class="window-controls">
+          <button id="pin" class="tiny-control" aria-label="Always on top" aria-pressed="true" title="Pin above other windows">⌖</button>
+          <button id="close" class="tiny-control" aria-label="Close Taskpress" title="Close">×</button>
+        </div>
+      </header>
+      <input id="title" class="page-title" maxlength="80" aria-label="Page title" value="TODAY'S PLAN" spellcheck="false">
+      <div class="perforation" aria-hidden="true"></div>
+      <div id="page" class="page-scroll" tabindex="-1">
+        <p id="empty" class="empty">A fresh sheet. A little intention.<br><span>Type your first task below.</span></p>
+        <div id="entries" role="list" aria-label="Tasks and plans"></div>
+      </div>
+      <form id="composer" autocomplete="off">
+        <label for="task-input" class="ribbon">›</label>
+        <input id="task-input" maxlength="500" placeholder="Type a task, press Enter…" aria-label="New task or section ending with a colon" spellcheck="true" autofocus>
+        <button class="enter-control" type="submit" aria-label="Add task" title="Return / add task">↵</button>
+      </form>
+      <div class="paper-foot">
+        <span class="hint">A heading ends in :</span>
+        <button id="sync" class="sync-control" title="Retry Obsidian sync">Connecting…</button>
+      </div>
+      <p id="message" role="status" aria-live="polite"></p>
+    </section>
+    <section class="machine" aria-label="Mechanical keyboard">
+      <div class="carriage">
+        <div class="roller drag-handle" title="Drag to move Taskpress"><span aria-hidden="true"></span></div>
+        <button id="feed" class="carriage-knob" aria-label="Clear completed tasks" title="Feed out completed lines · Ctrl+Shift+D">↥</button>
+      </div>
+      <div class="casing">
+        <div class="instrument-strip">
+          <button id="sound" aria-label="Mechanical sounds" aria-pressed="true" title="Mechanical sounds on / off">♪</button>
+          <output id="counter" aria-live="polite">0 / 0 done</output>
+          <button id="clear" title="Clear completed · Ctrl+Shift+D" aria-label="Clear completed">↟</button>
+        </div>
+        <div id="keyboard" class="keyboard" aria-label="On-screen typewriter keys"></div>
+        <div class="bottom-row">
+          <span class="brand drag-handle" title="Drag to move">HERMES<br><small>TYPEWRITER · 02</small></span>
+          <button id="space" class="spacebar" title="Type a space" aria-label="Space">SPACE</button>
+          <button id="backspace" class="key backspace" aria-label="Backspace" title="Erase one character">←</button>
+        </div>
+        <button id="resize" class="resize-grip" aria-label="Resize window" title="Drag to resize; arrow keys also work">◢</button>
+      </div>
+    </section>
+    <span id="announcer" class="sr-only" role="status" aria-live="polite"></span>
+  </main>
+  <dialog id="delete-dialog" aria-labelledby="delete-title" aria-describedby="delete-note">
+    <h2 id="delete-title">Remove this line?</h2>
+    <p id="delete-text"></p>
+    <p id="delete-note"></p>
+    <p id="delete-error" role="alert"></p>
+    <div class="dialog-actions">
+      <button id="keep-line" autofocus>Keep</button>
+      <button id="delete-line">Delete</button>
+    </div>
+  </dialog>
+</body>
+</html>
