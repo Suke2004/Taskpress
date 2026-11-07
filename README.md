@@ -16,7 +16,7 @@ Type a task and press **Enter**. End a line with `:` to make a plan heading. Cli
 - **Esc**: leave the input. **Ctrl+Shift+D**: feed out completed tasks.
 - **⌖**: pin/unpin above other windows. **♪**: toggle mechanical sounds.
 - **↟ / brass ↥ knob**: clear completed lines. Round letter keys and the spacebar also type into the input.
-- Drag the date strip, roller or HERMES name to move the window. Drag the bottom-right grip to resize; focused grip also accepts arrow keys.
+- Drag the date strip, roller or TaskPress name to move the window. Drag the bottom-right grip to resize; focused grip also accepts arrow keys.
 
 Tasks save to `%APPDATA%\Taskpress\tasks.json` before animations play. Closing during an animation loses no saved task. Only completed tasks are cleared; headings and pending tasks stay.
 
