@@ -61,7 +61,7 @@ async function run() {
   await page.locator('.task-row').nth(1).focus(); await page.keyboard.press('x');
   await page.waitForFunction(() => document.querySelector('#counter').textContent === '2 / 4 done');
   await synced();
-  const logFile = path.join(vault, 'Typewriter', 'Log.md');
+  const logFile = path.join(vault, 'Personal Tools', 'Typewriter', 'Log.md');
   let log = fs.readFileSync(logFile, 'utf8');
   assert.equal((log.match(/^- \[x\]/gm) || []).length, 2);
   assert.match(log, /Read a chapter — \d{4}-\d{2}-\d{2} \d{2}:\d{2}/);
@@ -105,7 +105,7 @@ async function run() {
   await page.locator('#task-input').focus(); await page.keyboard.press('Control+Shift+D');
   await page.waitForFunction(() => document.querySelectorAll('.task-row').length === 2);
   await synced(); assert.equal((fs.readFileSync(logFile, 'utf8').match(/^- \[x\]/gm) || []).length, 2);
-  assert.match(fs.readFileSync(path.join(vault, 'Typewriter', 'current-tasks.md'), 'utf8'), /- \[ \] Film a quiet morning/);
+  assert.match(fs.readFileSync(path.join(vault, 'Personal Tools', 'Typewriter', 'current-tasks.md'), 'utf8'), /- \[ \] Film a quiet morning/);
   console.log('PASS: clear shortcut keeps pending tasks and historical completions');
 
   configure(path.join(temp, 'unavailable-vault'));
@@ -165,7 +165,7 @@ async function run() {
   await page.locator('.line-editor').press('Enter'); await page.waitForSelector('.line-editor', { state: 'detached' });
   assert.equal(await headingRow.locator('.section-label').textContent(), 'Revised section');
   await synced();
-  let current = fs.readFileSync(path.join(vault, 'Typewriter', 'current-tasks.md'), 'utf8');
+  let current = fs.readFileSync(path.join(vault, 'Personal Tools', 'Typewriter', 'current-tasks.md'), 'utf8');
   assert.match(current, /## Revised section/); assert.match(current, /- \[x\] Final task/);
   await close(); await launch();
   const savedTaskRow = page.locator(`[data-id="${taskId}"]`), savedHeadingRow = page.locator(`[data-id="${headingId}"]`);
@@ -191,15 +191,15 @@ async function run() {
   assert.ok(snapshot.outbox.some(event => event.kind === 'edited' && event.text === 'Offline revised task'));
   assert.ok(snapshot.outbox.some(event => event.kind === 'deleted' && event.text === 'Offline revised task'));
   configure(vault); await synced();
-  current = fs.readFileSync(path.join(vault, 'Typewriter', 'current-tasks.md'), 'utf8');
+  current = fs.readFileSync(path.join(vault, 'Personal Tools', 'Typewriter', 'current-tasks.md'), 'utf8');
   assert.doesNotMatch(current, /Final task|Offline revised task|Revised section/);
   log = fs.readFileSync(logFile, 'utf8'); assert.match(log, /Revised task/); assert.doesNotMatch(log, /Offline revised task/);
-  const journal = fs.readdirSync(path.join(vault, 'Typewriter')).find(name => /^\d{4}-\d{2}-\d{2}\.md$/.test(name));
-  const activity = fs.readFileSync(path.join(vault, 'Typewriter', journal), 'utf8');
+  const journal = fs.readdirSync(path.join(vault, 'Personal Tools', 'Typewriter')).find(name => /^\d{4}-\d{2}-\d{2}\.md$/.test(name));
+  const activity = fs.readFileSync(path.join(vault, 'Personal Tools', 'Typewriter', journal), 'utf8');
   assert.match(activity, /edited task: Draft task → Revised task/);
   assert.match(activity, /edited section: CRUD checks → Revised section/);
   assert.match(activity, /deleted section: Revised section/); assert.match(activity, /deleted task: Offline revised task/);
-  await synced(); assert.equal(fs.readFileSync(path.join(vault, 'Typewriter', journal), 'utf8'), activity);
+  await synced(); assert.equal(fs.readFileSync(path.join(vault, 'Personal Tools', 'Typewriter', journal), 'utf8'), activity);
   await page.locator('#task-input').fill('Edit while the carriage is typing'); await page.locator('#task-input').press('Enter');
   await page.waitForSelector('.typing-caret');
   await page.locator('.task-row').last().locator('.edit-action').dispatchEvent('click');

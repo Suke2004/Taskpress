@@ -10,7 +10,7 @@ function fixture(t) {
   const config = path.join(root, 'config.json');
   fs.writeFileSync(config, JSON.stringify({ vaultPath: root, timeZone: 'Asia/Calcutta' }));
   const planner = new Planner(path.join(root, 'tasks.json'), () => Date.parse('2026-11-07T10:15:00Z'));
-  return { root, config, planner, read: file => fs.readFileSync(path.join(root, 'Typewriter', file), 'utf8') };
+  return { root, config, planner, read: file => fs.readFileSync(path.join(root, 'Personal Tools', 'Typewriter', file), 'utf8') };
 }
 test('tasks, sections, reopening, clearing and title persist; pending log events survive clearing', t => {
   const { planner } = fixture(t);
@@ -138,8 +138,8 @@ test('current page mirrors sections and checks while preserving handwritten note
   current = f.read('current-tasks.md'); assert.doesNotMatch(current, /Read/); assert.match(current, /Pending/);
 });
 test('existing note without markers is retained; broken markers never overwrite it', async t => {
-  const f = fixture(t); fs.mkdirSync(path.join(f.root, 'Typewriter'));
-  const file = path.join(f.root, 'Typewriter', 'current-tasks.md');
+  const f = fixture(t); fs.mkdirSync(path.join(f.root, 'Personal Tools', 'Typewriter'), { recursive: true });
+  const file = path.join(f.root, 'Personal Tools', 'Typewriter', 'current-tasks.md');
   fs.writeFileSync(file, 'My original note'); await syncCurrent(f.config, f.planner.state);
   assert.match(f.read('current-tasks.md'), /^My original note/);
   const bad = 'Keep me\n<!-- typewriter:begin -->\n'; fs.writeFileSync(file, bad);
@@ -157,5 +157,5 @@ test('runtime config can be repaired after failure without losing queued complet
   assert.equal((await settings(f.config)).typingSpeedMs, 45);
   for (const event of queued) { await appendLog(f.config, event); f.planner.acknowledge(event.id); }
   assert.equal(new Planner(f.planner.file).state.outbox.length, 0);
-  assert.match(fs.readFileSync(path.join(newVault, 'Typewriter', 'Log.md'), 'utf8'), /Offline task/);
+  assert.match(fs.readFileSync(path.join(newVault, 'Personal Tools', 'Typewriter', 'Log.md'), 'utf8'), /Offline task/);
 });

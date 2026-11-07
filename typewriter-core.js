@@ -171,7 +171,7 @@ async function appendOnce(file, event, line, heading) {
 }
 async function appendLog(configFile, event) {
   const config = await settings(configFile);
-  const folder = path.join(config.vaultPath, 'Typewriter');
+  const folder = path.join(config.vaultPath, 'Personal Tools', 'Typewriter');
   await fsp.mkdir(folder, { recursive: true });
   const time = stamp(event.at, config.timeZone);
   const label = markdown(event.text);
@@ -200,7 +200,7 @@ function currentPage(state, timeZone) {
 }
 async function syncCurrent(configFile, state) {
   const config = await settings(configFile);
-  const folder = path.join(config.vaultPath, 'Typewriter');
+  const folder = path.join(config.vaultPath, 'Personal Tools', 'Typewriter');
   await fsp.mkdir(folder, { recursive: true });
   const file = path.join(folder, 'current-tasks.md');
   let existing = '';

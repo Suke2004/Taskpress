@@ -57,9 +57,9 @@ When every task under a section is checked, its heading gets a **DONE** stamp. R
 
 Edit `config.json` to change the vault without changing code. Configuration is reread on each sync. The vault folder must already exist. The initial path is `G:\My Drive\Obsidian Sync`.
 
-- `Typewriter/Log.md`: append-only completion history with local timestamps.
-- `Typewriter/YYYY-MM-DD.md`: append-only journal of additions, headings, completions, reopening, edits, deletions, clearing and title changes.
-- `Typewriter/current-tasks.md`: current page, including sections and checkboxes. Handwritten text outside the managed markers is preserved.
+- `Personal Tools/Typewriter/Log.md`: append-only completion history with local timestamps.
+- `Personal Tools/Typewriter/YYYY-MM-DD.md`: append-only journal of additions, headings, completions, reopening, edits, deletions, clearing and title changes.
+- `Personal Tools/Typewriter/current-tasks.md`: current page, including sections and checkboxes. Handwritten text outside the managed markers is preserved.
 
 Sync runs **from Taskpress to Obsidian**. Edits made inside Obsidian are not imported into the app. Do not edit the managed block; place personal notes outside it. Event comments prevent duplicate logs after a retry. Failed writes remain queued locally, even after clearing; click **Retry sync** after repairing the path or restoring vault access. Relaunching retries too. A completion, reopen and later completion intentionally produces two historical completions.
 
